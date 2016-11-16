@@ -1,0 +1,4 @@
+dotfiles:
+  url: https://github.com/timniederhausen/dotfiles/archive/master.tar.gz
+  cache_path: /root/dotfiles.tar.xz
+  users: []

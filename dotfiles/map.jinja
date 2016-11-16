@@ -1,0 +1,9 @@
+{% import_yaml 'dotfiles/defaults.yaml' as defaults %}
+
+{# merge the pillar:lookup dict into the defaults/os specific dict #}
+{% set lookup = salt['pillar.get']('dotfiles:lookup',
+                                   default=defaults.dotfiles,
+                                   merge=True) %}
+
+{# merge the actual base pillar into the above combined dict #}
+{% set dotfiles = salt['pillar.get']('dotfiles', default=lookup, merge=True) %}
