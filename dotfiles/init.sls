@@ -1,5 +1,9 @@
 {% from 'dotfiles/map.jinja' import dotfiles with context %}
 
+# So far this is called the same everywhere
+keychain:
+  pkg.installed
+
 dotfiles_archive:
   file.managed:
     - name: {{ dotfiles.cache_path }}
