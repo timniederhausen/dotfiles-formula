@@ -19,6 +19,5 @@ dotfiles_user_{{ username }}:
     - archive_format: tar
     - tar_options: --strip-components=1
     - user: {{ username }}
-    - group: {{ username }}
     - if_missing: {{ home }}/.zshrc
 {% endfor %}
