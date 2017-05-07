@@ -20,4 +20,5 @@ dotfiles_user_{{ username }}:
     - tar_options: --strip-components=1
     - user: {{ username }}
     - if_missing: {{ home }}/.zshrc
+    - enforce_toplevel: false
 {% endfor %}
