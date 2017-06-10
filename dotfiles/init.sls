@@ -17,7 +17,7 @@ dotfiles_user_{{ username }}:
     - name: {{ home }}
     - source: file://{{ dotfiles.cache_path }}
     - archive_format: tar
-    - tar_options: --strip-components=1
+    - options: --strip-components=1
     - user: {{ username }}
     - if_missing: {{ home }}/.zshrc
     - enforce_toplevel: false
