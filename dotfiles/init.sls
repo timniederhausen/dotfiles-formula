@@ -13,12 +13,14 @@ dotfiles_archive:
 {% for username in dotfiles.users %}
 {% set home = '/root' if username == 'root' else '/home/' + username %}
 dotfiles_user_{{ username }}:
-  archive.extracted:
-    - name: {{ home }}
-    - source: file://{{ dotfiles.cache_path }}
-    - archive_format: tar
-    - options: --strip-components=1
-    - user: {{ username }}
-    - if_missing: {{ home }}/.zshrc
-    - enforce_toplevel: false
+  cmd.run:
+    - name: tar xf {{ dotfiles.cache_path }} --strip-components=1 -C {{ home }}
+    - runas: {{ username }}
+    - creates: {{ home }}/.zshrc
+dotfiles_user_{{ username }}_reextract:
+  cmd.run:
+    - name: tar xf {{ dotfiles.cache_path }} --strip-components=1 -C {{ home }}
+    - runas: {{ username }}
+    - onchanges:
+      - file: dotfiles_archive
 {% endfor %}
